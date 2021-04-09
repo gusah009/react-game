@@ -44,6 +44,31 @@ function boardCrash(state, setState, boardStyle) {
   }
 }
 
+
+function barCrash(state, setState, barStyle) {
+  const changeDir = {
+    ...state,
+  }
+  // 공 크기 조절해야댐
+  if (state.style.left < 0) {
+    changeDir.dir.x = -changeDir.dir.x;
+    state.style.left = 0;
+    setState(changeDir);
+  } else if (state.style.left > barStyle.width - state.style.width) {
+    changeDir.dir.x = -changeDir.dir.x;
+    state.style.left = barStyle.width - state.style.width;
+    setState(changeDir);
+  } else if (state.style.top < 0) {
+    changeDir.dir.y = -changeDir.dir.y;
+    state.style.top = 0;
+    setState(changeDir);
+  } else if (state.style.top > barStyle.height - state.style.height) {
+    changeDir.dir.y = -changeDir.dir.y;
+    state.style.top = barStyle.height - state.style.height;
+    setState(changeDir);
+  }
+}
+
 function Ball(props) {
   // const [intervalId, setIntervalId] = useState({});
   const [state, setState] = useState({

@@ -13,18 +13,39 @@ function Board() {
       left: 20,
       position:"absolute"
     },
+    barStyle: {
+      height: 10,
+      width: 30,
+      background: "black",
+      left: 20,
+      top: 400,
+      position: "absolute"
+    }
   });
 
-  let barInfo = {};
-  function handleBarChange(barInf) {
-    barInfo = barInf;
-    console.log(barInfo);
-  }
-
   function mouseMoveHandler(e) {
+    let left = 0;
+    const boardStyle = state.boardStyle;
+    const barStyle = state.barStyle;
+    const pageX = state.pageX;
+    console.log(state.pageX);
+    console.log(boardStyle.left);
+    if (pageX < boardStyle.left) {
+      left = 0 //boardStyle.left;
+    } else if (pageX - boardStyle.left < boardStyle.width - barStyle.width) {
+      left = pageX - boardStyle.left;
+    } else {
+      left = boardStyle.width - barStyle.width;
+    }
+
+    const changeBarStyle = {
+      ...(state.barStyle),
+      left: left
+    }
     const changeState = {
       ...state,
-      pageX: e.pageX
+      pageX: e.pageX,
+      barStyle: changeBarStyle
     }
     setState(changeState);
   }
@@ -38,13 +59,11 @@ function Board() {
         boardStyle={state.boardStyle}
       />
       <Movebar
-        posX={state.pageX}
-        boardStyle={state.boardStyle}
-        onBarChange={handleBarChange}
+        barStyle={state.barStyle}
       />
 
     </div>
-  )
-}
+  );
+};
 
 export default Board;
