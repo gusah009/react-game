@@ -55,14 +55,12 @@ function barCrash(state, setState, barStyle) {
       changeDir.dir.y = -changeDir.dir.y;
       changeDir.touchFlag = true;
       setState(changeDir);
-      console.log("야호!");
     }
   } else if (isCrashBottom(state, barStyle)){
     if (!changeDir.touchFlag) {
       changeDir.dir.y = -changeDir.dir.y;
       changeDir.touchFlag = true;
       setState(changeDir);
-      console.log("야호!");
     }
   } else {
     if (changeDir.touchFlag) {

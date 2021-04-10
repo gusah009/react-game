@@ -9,8 +9,6 @@ export function isCrashTop(ballStyle, barStyle) {
 
   if (barTop - r - strokeWidth <= ballY && ballY <= barTop) {
     if (barLeft - r <= ballX && ballX <= barLeft + barWidth + r) {
-      console.log(ballY);
-      console.log(barTop - r - strokeWidth);
       return true;
     }
   }
