@@ -22,26 +22,33 @@ function useInterval(callback, delay) {
 }
 
 function boardCrash(state, setState, boardStyle) {
-  const changeDir = {
+  const changeState = {
     ...state,
+  }
+  const changeStyle = {
+    ...(state.style)
   }
   // 공 크기 조절해야댐
   if (state.style.left < 0) {
-    changeDir.dir.x = -changeDir.dir.x;
-    changeDir.style.left = 0;
-    setState(state);
-  } else if (changeDir.style.left > boardStyle.width - changeDir.style.width) {
-    changeDir.dir.x = -changeDir.dir.x;
-    changeDir.style.left = boardStyle.width - changeDir.style.width;
-    setState(state);
-  } else if (changeDir.style.top < 0) {
-    changeDir.dir.y = -changeDir.dir.y;
-    changeDir.style.top = 0;
-    setState(state);
-  } else if (changeDir.style.top > boardStyle.height - changeDir.style.height) {
-    changeDir.dir.y = -changeDir.dir.y;
-    changeDir.style.top = boardStyle.height - changeDir.style.height;
-    setState(state);
+    changeState.dir.x = -changeState.dir.x;
+    changeStyle.left = 0;
+    changeState.style = changeStyle;
+    setState(changeState);
+  } else if (changeStyle.left > boardStyle.width - changeStyle.width) {
+    changeState.dir.x = -changeState.dir.x;
+    changeStyle.left = boardStyle.width - changeStyle.width;
+    changeState.style = changeStyle;
+    setState(changeState);
+  } else if (changeStyle.top < 0) {
+    changeState.dir.y = -changeState.dir.y;
+    changeStyle.top = 0;
+    changeState.style = changeStyle;
+    setState(changeState);
+  } else if (changeStyle.top > boardStyle.height - changeStyle.height) {
+    changeState.dir.y = -changeState.dir.y;
+    changeStyle.top = boardStyle.height - changeStyle.height;
+    changeState.style = changeStyle;
+    setState(changeState);
   }
 }
 
