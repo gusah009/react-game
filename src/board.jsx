@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Movebar from './moveBar'
-import Ball from './ball'
+import Ball from './ball/ball'
 
 
 function Board() {
@@ -55,6 +55,7 @@ function Board() {
     >
       <Ball 
         boardStyle={state.boardStyle}
+        barStyle={state.barStyle}
       />
       <Movebar
         barStyle={state.barStyle}
