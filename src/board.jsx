@@ -27,13 +27,11 @@ function Board() {
     let left = 0;
     const boardStyle = state.boardStyle;
     const barStyle = state.barStyle;
-    const pageX = state.pageX;
-    console.log(state.pageX);
-    console.log(boardStyle.left);
-    if (pageX < boardStyle.left) {
+    const mouseX = state.pageX - barStyle.width/2;
+    if (mouseX < boardStyle.left) {
       left = 0 //boardStyle.left;
-    } else if (pageX - boardStyle.left < boardStyle.width - barStyle.width) {
-      left = pageX - boardStyle.left;
+    } else if (mouseX - boardStyle.left < boardStyle.width - barStyle.width) {
+      left = mouseX - boardStyle.left;
     } else {
       left = boardStyle.width - barStyle.width;
     }
